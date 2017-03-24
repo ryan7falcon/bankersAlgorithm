@@ -9,7 +9,7 @@
 // -----------------------------------------------------------------------------------------
 // DATA
 // -----------------------------------------------------------------------------------------
-const bankersApp = {
+let bankersApp = {
   numProcesses: 5,
   processPrefix: 'P',
   resources: ['A', 'B', 'C'],
@@ -27,6 +27,9 @@ const bankersApp = {
     [2, 1, 1],
     [0, 0, 2]],
   request: [2, 4, 4],
+  status: 'Success',
+  error: '',
+
 }
 
 // -----------------------------------------------------------------------------------------
@@ -141,6 +144,17 @@ function table(numProcesses, processPrefix, allocationArr, maxArr, resourcesArr)
   `
 }
 
+function inputResources(resourcesArr) {
+  let str = ''
+  resourcesArr.forEach((resource) => {
+    str += `
+      <label for="${resource}">${resource}</label>
+      <input type="text" class="need" name="${resource}" id="${resource}"/>
+    `
+  })
+  return str
+}
+
 // -----------------------------------------------------------------------------------------
 // render functions (functions with side effects - updating DOM)
 // -----------------------------------------------------------------------------------------
@@ -152,6 +166,20 @@ function renderAvailable(availableArr, resourcesArr) {
 // render table rows with allocation and max
 function renderTable(numProcesses, processPrefix, allocationArr, maxArr, resourcesArr) {
   document.querySelector('#table').innerHTML = table(numProcesses, processPrefix, allocationArr, maxArr, resourcesArr)
+}
+
+//
+function renderInputs(resourcesArr, numProcesses) {
+  // input resources
+  document.querySelector('.inputResources').innerHTML = inputResources(resourcesArr)
+  // process id select
+  const processSelect = document.getElementById('process')
+  for (let i = 0; i < numProcesses; i++) {
+    const option = document.createElement('option')
+    option.text = i
+    option.value = i
+    processSelect.add(option)
+  }
 }
 
 // render current state - available and table
@@ -170,17 +198,40 @@ function renderLogEntry(processId, processPrefix, status, error,
 // -----------------------------------------------------------------------------------------
 // functions for mutating the app state
 // -----------------------------------------------------------------------------------------
-// update the app state based on request and render results
+// returns the new app state based on request and render results
 function sendRequest(app) {
-  // get request
-  // update app data
+  // new app state will be saved here
+  const newApp = app
+
+  // get requested process ID
+  const processId = document.querySelector('#process>option:checked').value
+  console.log(processId)
+
+  // get requested resources from input
+  app.resources.forEach((resource, i) => {
+    newApp.request[i] = parseInt(document.querySelector(`#${resource}`).value, 10) || 0
+  })
+
+  // TODO: update app data
+  //
+
   // render results
-  renderLogEntry(0, app.processPrefix, 'Success', '', app.request, app.allocation[0], app.available, app.resources)
-  render(app)
+  renderLogEntry(processId, newApp.processPrefix, newApp.status, newApp.error,
+    newApp.request, newApp.allocation[processId], newApp.available, newApp.resources)
+  render(newApp)
+
+  return newApp
 }
 
-// handle button click
-document.querySelector('#sendRequest').addEventListener('click', () => sendRequest(bankersApp))
+// -----------------------------------------------------------------------------------------
+// run the app
+// -----------------------------------------------------------------------------------------
+
+// handle button click - modify the state and render results
+document.querySelector('#sendRequest').addEventListener('click', () => {
+  bankersApp = sendRequest(bankersApp)
+})
 
 // initial app render
+renderInputs(bankersApp.resources, bankersApp.numProcesses)
 render(bankersApp)

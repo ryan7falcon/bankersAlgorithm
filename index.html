@@ -9,70 +9,43 @@
 </head>
 <body>
   <div class="container">
-
     <div class="card">
       <h2> Create new request</h2>
       <div class="params">
         <div class="inputProcess">
           <label for="process">Process ID</label>
           <select name="process" id="process">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
+            <!-- options goe here -->
           </select>
         </div>
-
         <div class="inputResources">
-          <label for="a">A</label>
-          <input type="text" class="need" name="a" id="a"/>
-          <label for="b">B</label>
-          <input type="text" class="need" name="b" id="b"/>
-          <label for="c">C</label>
-          <input type="text" class="need" name="c" id="c"/>
+          <!-- inputs go here -->
         </div>
       </div>
       <button class="primaryButton" id="sendRequest">Send Request</button>
     </div>
+
     <div class="card cardAvailable">
       <div class="header">Currently Available </div>
       <div id="availableResources">
         <!-- Available resources go here -->
       </div>
     </div>
+
     <div class="card">
       <table id="table">
-        <tr class="headerRow">
-        <td></td>
-
-          <td>
-            <div class="header">Allocation</div>
-          </td>
-          <td>
-            <div class="header">Max</div>
-          </td>
-        </tr>
-        <tr class="resoursesHeaderRow">
-          <td></td>
-          <td>
-            <div><span>A</span> <span>B</span> <span>C</span></div>
-          </td>
-          <td>
-            <div><span>A</span> <span>B</span> <span>C</span></div>
-          </td>
-        </tr>
-        <!-- Process rows go here -->
+        <!-- table goes here -->
       </table>
     </div>
+
     <div class="card">
-      <div class="header log">Log</div>
+      <div class="header">Log</div>
       <div class="logContainer">
         <!-- logRows go here -->
       </div>
     </div>
-
   </div>
+
   <script src="./script.js" type="text/javascript" charset="utf-8" async defer></script>
 </body>
 </html>
