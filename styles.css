@@ -1,0 +1,235 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  color: var(--text);
+}
+
+body {
+  /* carbon fiber background from http://lea.verou.me/css3patterns/#starry-night */
+  background:
+  radial-gradient(black 15%, transparent 16%) 0 0,
+  radial-gradient(black 15%, transparent 16%) 8px 8px,
+  radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+  radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+  background-color:var(--backdrop);
+  background-size:16px 16px;
+}
+
+:root {
+  --primary: #82A4CF;
+  --primary-darker: #6E8BAF;
+  --primary-hover: #99B9E2;
+  --backdrop: #282828;
+  --backdrop-light: #E5E5E5;
+  --text:  #555;
+}
+
+h2 {
+  color: var(--text);
+  text-align: center;
+  font-weight: 100;
+  font-size: 1.5em;
+  flex: 3 3 100%;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: var(--backdrop-light);
+  padding: 20px;
+  box-shadow: 0 7px 0 rgba(255,255,255,0.8);
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.card > * {
+  margin: 10px;
+}
+
+input, select {
+  border-radius: 5px;
+  opacity: 0.9;
+}
+
+.primaryButton{
+  height: 47px;
+  flex: 1 0 130px;
+  font-size: 1em;
+  position: relative;
+  outline: none;
+  background-color: var(--primary);
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+  box-shadow: 0 5px 0 var(--primary-darker);
+  color: white;
+  transition: all 0.2s;
+  text-shadow: 0 -1px 1px var(--primary-darker);
+}
+
+.primaryButton:hover {
+  background-color: var(--primary-hover);
+  cursor: pointer;
+}
+
+.primaryButton:active {
+  transform: translateY(2px);
+  /* transform: scale(0.98); */
+  box-shadow: 0 3px 0 var(--primary-darker);
+}
+
+.params {
+  flex: 2 2 410px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+  background:rgba(255, 255, 255, .4);
+  border-radius: 10px;
+}
+
+.params > * {
+  margin: 4px;
+  display: flex;
+  justify-content: center;
+}
+
+.inputProcess {
+  flex: 1 1 150px;
+}
+
+.inputResources {
+  flex: 2 2 220px;
+}
+
+.params label {
+  color: var(--text);
+  margin: 0 5px 0 15px;
+}
+
+.need {
+  width: 40px;
+}
+
+#process {
+  width: 40px;
+}
+
+#table {
+  width: 100%;
+  text-align: center;
+}
+
+.headerRow {
+
+}
+
+.headerRow > * {
+
+}
+
+.header {
+  min-width: 100px;
+  font-weight: 100;
+  font-size: 20px;
+}
+
+.resoursesHeaderRow, .processCell, .processName {
+  font-weight: 600;
+}
+
+td {
+  border-bottom: 1px solid  var(--text);
+  border-right:  1px solid  var(--text);
+  margin: 0;
+}
+
+.headerRow td {
+  border: none;
+}
+
+td > div {
+  display: flex;
+  justify-content: space-around;
+}
+ td > div > span {
+  flex:1;
+}
+
+.cardAvailable, .request{
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+}
+
+#availableResources {
+  flex: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+}
+
+#availableResources > * {
+  margin-right: 10px;
+}
+
+.resources{
+  flex: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.resources > * {
+  margin-right: 10px;
+}
+
+.resource:last-child {
+  margin :0;
+}
+
+.resource {
+  /* flex:1; */
+  /* margin-right: 10px; */
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.logContainer {
+  margin:4px 0 0 0 ;
+}
+
+.logRow {
+  padding: 10px;
+  background:rgba(255, 255, 255, .4);
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.logRow:last-child {
+  margin: 0;
+}
+
+.logDetails  {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logDetails > * {
+}
+
+
+.resourcesWrapper {
+  margin-right: 10px;
+}
+
+.resourcesWrapper:last-child {
+  margin-right: 0;
+}
