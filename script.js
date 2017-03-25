@@ -27,9 +27,9 @@ let bankersApp = {
     [2, 1, 1],
     [0, 0, 2]],
   request: [2, 4, 4],
-  status: 'Success',
+  sequence: [1, 2, 3],
+  status: 'Success!',
   error: '',
-
 }
 
 // -----------------------------------------------------------------------------------------
@@ -56,12 +56,26 @@ function resourceWrapper(heading, valuesArr, resourcesArr) {
 }
 
 // returns html for log rows
-function logRow(processName, status, error, requestArr, allocationArr, availableArr, resourcesArr) {
+function logRow(processId, processPrefix, status, sequence, error,
+  requestArr, allocationArr, availableArr, resourcesArr) {
+  let seqStr = ''
+
+  if (error === '') {
+    seqStr = 'Safe sequence: '
+    sequence.forEach((id, i) => {
+      seqStr += processPrefix + id
+      if (i < sequence.length - 1) {
+        seqStr += '->'
+      }
+    })
+  }
+
   return `
     <div class="logRow panel">
       <div class="status">
-        <span class="processName">${processName}</span>
+        <span class="processName">${processPrefix}${processId}</span>
         <span class="success">${status}</span>
+        <span class="sequence">${seqStr}</span>
         <span class="error">${error}</span>
       </div>
       <div class="logDetails">
@@ -189,9 +203,10 @@ function render(app) {
 }
 
 // render log entries
-function renderLogEntry(processId, processPrefix, status, error,
+function renderLogEntry(processId, processPrefix, status, sequence, error,
   requestArr, allocationArr, availableArr, resourcesArr) {
-  const logRowStr = logRow(`${processPrefix}${processId}`, status, error, requestArr, allocationArr, availableArr, resourcesArr)
+  const logRowStr = logRow(processId, processPrefix, status, sequence, error,
+    requestArr, allocationArr, availableArr, resourcesArr)
   document.querySelector('.logContainer').insertAdjacentHTML('afterbegin', logRowStr)
 }
 
@@ -213,10 +228,13 @@ function sendRequest(app) {
   })
 
   // TODO: update app data
-  //
+  // check if request < max - allocated
+  // check if request < available
+  // check if request -> deadlock
+  // print safe sequence
 
   // render results
-  renderLogEntry(processId, newApp.processPrefix, newApp.status, newApp.error,
+  renderLogEntry(processId, newApp.processPrefix, newApp.status, newApp.sequence, newApp.error,
     newApp.request, newApp.allocation[processId], newApp.available, newApp.resources)
   render(newApp)
 
