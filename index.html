@@ -11,7 +11,7 @@
   <div class="container">
     <div class="card">
       <h2> Create new request</h2>
-      <div class="params">
+      <div class="params panel">
         <div class="inputProcess">
           <label for="process">Process ID</label>
           <select name="process" id="process">
@@ -27,15 +27,17 @@
 
     <div class="card cardAvailable">
       <div class="header">Currently Available </div>
-      <div id="availableResources">
+      <div id="availableResources" class="panel">
         <!-- Available resources go here -->
       </div>
     </div>
 
     <div class="card">
-      <table id="table">
-        <!-- table goes here -->
-      </table>
+      <div class="wrapper">
+        <table id="table">
+          <!-- table goes here -->
+        </table>
+      </div>
     </div>
 
     <div class="card">

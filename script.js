@@ -58,7 +58,7 @@ function resourceWrapper(heading, valuesArr, resourcesArr) {
 // returns html for log rows
 function logRow(processName, status, error, requestArr, allocationArr, availableArr, resourcesArr) {
   return `
-    <div class="logRow">
+    <div class="logRow panel">
       <div class="status">
         <span class="processName">${processName}</span>
         <span class="success">${status}</span>
@@ -84,7 +84,7 @@ function processRow(processId, processName, allocationArr, maxArr, resourcesArr)
   }
 
   return `
-    <tr class="processRow" data-process="${processId}">
+    <tr class="processRow panel" data-process="${processId}">
       <td class="processCell">${processName}</td>
       <td><div>
         ${allocationStr}
@@ -125,13 +125,13 @@ function table(numProcesses, processPrefix, allocationArr, maxArr, resourcesArr)
     <td></td>
 
       <td>
-        <div class="header">Allocation</div>
+        <div class="header headerTable">Allocation</div>
       </td>
       <td>
-        <div class="header">Max</div>
+        <div class="header headerTable">Max</div>
       </td>
     </tr>
-    <tr class="resoursesHeaderRow">
+    <tr class="resoursesHeaderRow panel">
       <td></td>
       <td>
         <div>${resourcesStr}</div>
