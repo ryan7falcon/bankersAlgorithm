@@ -60,6 +60,10 @@ h2 {
   box-shadow: 0 2px 2px rgba(0,0,0,0.1) inset, 0 -1px 0px rgba(255,255,255,0.7) inset;
 }
 
+.finished {
+   box-shadow: 0 2px 2px rgba(0,0,0,0.1) inset, 0 40px 2px rgba(0,255,0,0.15) inset, 0 -1px 0px rgba(255,255,255,0.7) inset;
+}
+
 /* inputs */
 input, select {
   border-radius: 5px;
@@ -148,12 +152,17 @@ input, select {
   min-width: 100px;
 }
 
-.resoursesHeaderRow, .processCell, .processName {
+.resoursesHeaderRow, .processCell, .processName, .resourceName {
   font-weight: 600;
 }
 
 td {
   margin: 0;
+  border-right: 1px solid rgba(0,0,0,0.098);
+}
+
+td:last-child {
+  border: none;
 }
 
 .headerRow td {
@@ -215,6 +224,7 @@ td > div {
   margin-top: 10px;
   display: flex;
   justify-content: space-around;
+
 }
 
 .resourcesWrapper {
@@ -223,4 +233,9 @@ td > div {
 
 .resourcesWrapper:last-child {
   margin-right: 0;
+}
+
+.resourceWithProcessName {
+  display: flex;
+  align-items: flex-end;
 }
